@@ -3,6 +3,8 @@ package me.xerces.utils.managers;
 import java.io.*;
 import java.util.LinkedList;
 import java.util.Scanner;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
 
 /**
  * @author Xerces
@@ -18,7 +20,7 @@ public class FileManager {
     public static String[] readTextFile(String filePath)
     {
         File textFile = new File(filePath);
-        LinkedList<String> textLines = new LinkedList<String>();
+        LinkedList<String> textLines = new LinkedList<>();
         if(textFile.exists())
         {
             try {
@@ -72,5 +74,29 @@ public class FileManager {
             e.printStackTrace();
         }
         return false;
+    }
+
+    /**
+     * Convert a {@link java.util.jar.JarEntry} to a byte array
+     * @param jarFile the {@link java.util.jar.JarFile} so we can get the {@link java.io.InputStream}
+     * @param jarEntry {@link java.util.jar.JarEntry} to convert
+     * @return the byte array
+     * @throws IOException
+     */
+    public static byte[] getBytesFromEntry(JarFile jarFile, JarEntry jarEntry) throws IOException
+    {
+        ByteArrayOutputStream arrayOutputStream = new ByteArrayOutputStream();
+        InputStream inputStream = jarFile.getInputStream(jarEntry);
+        while(true)
+        {
+            int readIn = inputStream.read();
+            if(readIn != -1)
+            {
+                arrayOutputStream.write(readIn);
+            } else {
+                break;
+            }
+        }
+        return arrayOutputStream.toByteArray();
     }
 }
