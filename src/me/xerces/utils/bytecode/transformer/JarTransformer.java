@@ -45,6 +45,20 @@ public class JarTransformer{
         }
     }
 
+    /**
+     * Add a {@link me.xerces.utils.bytecode.transformer.transformers.ITransformer} to transform a class
+     * @param className the internal name of the class, the path can either be the internal class name or the external class name
+     * @param iTransformer the {@link me.xerces.utils.bytecode.transformer.transformers.ITransformer} to add
+     */
+    public void addTransformer(String className, ITransformer iTransformer)
+    {
+        if(className.contains(".") && !className.contains("/"))
+        {
+            this.transformerMap.put(className.replaceAll(".", "/"), iTransformer);
+        } else {
+            this.transformerMap.put(className, iTransformer);
+        }
+    }
 
     /**
      * Transform the {@link java.util.jar.JarFile} with the specified
@@ -114,18 +128,12 @@ public class JarTransformer{
     }
 
     /**
-     * Add a {@link me.xerces.utils.bytecode.transformer.transformers.ITransformer} to transform a class
-     * @param className the internal name of the class, the path can either be the internal class name or the external class name
-     * @param iTransformer the {@link me.xerces.utils.bytecode.transformer.transformers.ITransformer} to add
+     * Get the maniuplated {@link org.objectweb.asm.tree.ClassNode}, make sure you have called {@link #transformJar()} before you call this.
+     * @return the {@link java.util.ArrayList} of {@link org.objectweb.asm.tree.ClassNode}
      */
-    public void addTransformer(String className, ITransformer iTransformer)
+    public List<ClassNode> getClasses()
     {
-        if(className.contains(".") && !className.contains("/"))
-        {
-            this.transformerMap.put(className.replaceAll(".", "/"), iTransformer);
-        } else {
-            this.transformerMap.put(className, iTransformer);
-        }
+        return newClasses;
     }
 
 }
