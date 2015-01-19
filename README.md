@@ -21,5 +21,5 @@ to actually transform the Jar followed by
 to output the new Jar, or you can choose to manipulate/use the ClassNodes further via
 <br /><code>jarTransformer.getClasses()</code>
 <h4>Transformers</h4>
-To actually use the JarTransformer you will need to create Transformer for each class. They'll need to implement the <code>ITransformer</code> interface. An example Transformer can be found under
+To actually use the JarTransformer you will need to create a Transformer for each class. They'll need to implement the <code>ITransformer</code> interface. An example Transformer can be found under
 <code>me.xerces.utils.bytecode.transformer.transformers.ExampleTransformer</code>
