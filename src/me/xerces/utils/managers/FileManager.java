@@ -78,8 +78,8 @@ public class FileManager {
 
     /**
      * Convert a {@link java.util.jar.JarEntry} to a byte array
-     * @param jarFile the {@link java.util.jar.JarFile} so we can get the {@link java.io.InputStream}
-     * @param jarEntry {@link java.util.jar.JarEntry} to convert
+     * @param zipFile the {@link java.util.zip.ZipFile} so we can get the {@link java.io.InputStream}
+     * @param zipEntry {@link java.util.zip.ZipEntry} to convert
      * @return the byte array
      * @throws IOException
      */
