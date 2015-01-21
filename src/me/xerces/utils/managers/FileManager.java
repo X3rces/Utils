@@ -83,10 +83,10 @@ public class FileManager {
      * @return the byte array
      * @throws IOException
      */
-    public static byte[] getBytesFromEntry(JarFile jarFile, JarEntry jarEntry) throws IOException
+    public static byte[] getBytesFromEntry(ZipFile zipFile, ZipEntry zipEntry) throws IOException
     {
         ByteArrayOutputStream arrayOutputStream = new ByteArrayOutputStream();
-        InputStream inputStream = jarFile.getInputStream(jarEntry);
+        InputStream inputStream = zipFile.getInputStream(zipEntry);
         int readIn;
         while((readIn = inputStream.read()) != -1)
         {
