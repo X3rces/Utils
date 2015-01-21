@@ -87,15 +87,10 @@ public class FileManager {
     {
         ByteArrayOutputStream arrayOutputStream = new ByteArrayOutputStream();
         InputStream inputStream = jarFile.getInputStream(jarEntry);
-        while(true)
+        int readIn;
+        while((readIn = inputStream.read()) != -1)
         {
-            int readIn = inputStream.read();
-            if(readIn != -1)
-            {
-                arrayOutputStream.write(readIn);
-            } else {
-                break;
-            }
+            arrayOutputStream.write(readIn);
         }
         return arrayOutputStream.toByteArray();
     }
