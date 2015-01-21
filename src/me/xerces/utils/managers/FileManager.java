@@ -32,9 +32,9 @@ public class FileManager {
                     {
                         textLines.add(textLine);
                     }
-                    return textLines.toArray(new String[textLines.size()]);
                 }
                 scanner.close();
+                return textLines.toArray(new String[textLines.size()]);
             } catch (IOException e)
             {
                 e.printStackTrace();
